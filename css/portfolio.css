@@ -1,0 +1,50 @@
+body {
+  background-image: url("../img/名古屋城.png");
+  background-size: 100%;
+}
+
+#portfolio_home {
+  display: flex;
+  width: 60%;
+  margin: 100px auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid white 2px;
+  padding: 100px;
+}
+
+#menu_frame {
+  border: solid white 2px;
+  border-radius: 8%;
+  padding: 20px 0 10px 0;
+  margin-right: 50px;
+  flex-grow: 2;
+  display: flex;
+  /* flex-wrap: wrap;
+  flex-direction: column; */
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+#menu_item {
+  height: calc(25% - 15px); /* margin padding分を引く */
+  margin: 1px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  line-height: calc(25% - 16px);
+  font-size: 2rem;
+  align-items: baseline;
+}
+
+#menu_item:hover {
+  font-weight: bold;
+}
+
+#display_frame {
+  padding: 0 30px;
+  flex-grow: 3;
+}
+
+#avater_frame {
+  text-align: center;
+}
