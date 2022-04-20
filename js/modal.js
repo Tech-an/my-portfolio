@@ -10,7 +10,11 @@ class MODAL {
       exist: { [parentNodeName]: { tag: parentNodeName, css: [] } },
       new: {
         modalWrap: { tag: "div", css: [], parent: parentNodeName },
-        trigger: { tag: "input", css: ["trigger"], parent: "modalWrap" },
+        trigger: {
+          tag: "input",
+          css: ["trigger" + (i + 1)],
+          parent: "modalWrap",
+        },
         modalOverlay: { tag: "div", css: [], parent: "modalWrap" },
         modalTrigger: { tag: "label", css: [], parent: "modalOverlay" },
         modalContent: { tag: "div", css: [], parent: "modalOverlay" },
@@ -31,9 +35,10 @@ class MODAL {
   }
   /**作成したmodalの親要素を返す */
   genModal(isModal, i) {
+    const trigger = this.getTag("trigger");
     const [
       modalWrap,
-      trigger,
+      _,
       modalOverlay,
       modalTrigger,
       modalContent,
@@ -44,9 +49,9 @@ class MODAL {
     ] = Object.keys(this.nodes.new).map((nodeName) => this.getTag(nodeName));
     if (isModal) {
       trigger.type = "checkbox";
-      modalTrigger.htmlFor = "trigger" + i;
-      closeButton.htmlFor = "trigger" + i;
-      openButton.htmlFor = "trigger" + i;
+      modalTrigger.htmlFor = "trigger" + (i + 1);
+      closeButton.htmlFor = "trigger" + (i + 1);
+      openButton.htmlFor = "trigger" + (i + 1);
     }
     modalOverlay.classList.add("modal_overlay");
     modalWrap.classList.add("modal_wrap");

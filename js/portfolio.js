@@ -1,6 +1,6 @@
 const portfolio = {
   portfolioDef: {
-    menuContents: [
+    menuTxts: [
       "はなす",
       "どうぐ",
       "そうび",
@@ -10,6 +10,16 @@ const portfolio = {
       "しらべる",
       "さくせん",
     ],
+    menuContents: {
+      menu1: null,
+      menu2: {},
+      menu3: {},
+      menu4: {},
+      menu5: {},
+      menu6: {},
+      menu7: {},
+      menu8: {},
+    },
     avaterImgs: { random: ["デフォルトてつや.png"] },
     talkContets: { random: ["おはよう!", "こんにちは！", "こんばんは！"] },
     nodes: {
@@ -21,46 +31,15 @@ const portfolio = {
           parent: "main",
         },
         menuNode: { tag: "div", css: ["menu_frame"], parent: "portfolio_home" },
-        menu1: {
-          tag: "div",
-          css: ["menu_item", "talk", "menu1"],
-          parent: "menuNode",
-        },
-        menu2: {
-          tag: "div",
-          css: ["menu_item", "item", "menu2"],
-          parent: "menuNode",
-        },
-        menu3: {
-          tag: "div",
-          css: ["menu_item", "equip", "menu3"],
-          parent: "menuNode",
-        },
-        menu4: {
-          tag: "div",
-          css: ["menu_item", "states", "menu4"],
-          parent: "menuNode",
-        },
-        menu5: {
-          tag: "div",
-          css: ["menu_item", "magic", "menu5"],
-          parent: "menuNode",
-        },
-        menu6: {
-          tag: "div",
-          css: ["menu_item", "history", "menu6"],
-          parent: "menuNode",
-        },
-        menu7: {
-          tag: "div",
-          css: ["menu_item", "serach", "menu7"],
-          parent: "menuNode",
-        },
-        menu8: {
-          tag: "div",
-          css: ["menu_item", "strategy", "menu8"],
-          parent: "menuNode",
-        },
+        menuFlex: { tag: "div", css: ["menu_flex"], parent: "menuNode" },
+        menu1: { tag: "div", css: ["menu1"], parent: "menuFlex" },
+        menu2: { tag: "div", css: ["menu2"], parent: "menuFlex" },
+        menu3: { tag: "div", css: ["menu3"], parent: "menuFlex" },
+        menu4: { tag: "div", css: ["menu4"], parent: "menuFlex" },
+        menu5: { tag: "div", css: ["menu5"], parent: "menuFlex" },
+        menu6: { tag: "div", css: ["menu6"], parent: "menuFlex" },
+        menu7: { tag: "div", css: ["menu7"], parent: "menuFlex" },
+        menu8: { tag: "div", css: ["menu8"], parent: "menuFlex" },
         displayNode: {
           tag: "div",
           css: ["display_frame"],
@@ -73,7 +52,7 @@ const portfolio = {
         },
         avaterImg: { tag: "img", css: [], parent: "avaterNode" },
 
-        talkNode: { tag: "div", css: [], parent: "displayNode" },
+        talkNode: { tag: "div", css: ["talk_frame"], parent: "displayNode" },
         talkerName: { tag: "p", css: [], parent: "talkNode" },
         talkContent: { tag: "p", css: [], parent: "talkNode" },
       },
@@ -98,14 +77,15 @@ const portfolio = {
         return this.getTag(`menu${i + 1}`);
       })
       .forEach((menuNode, i) => {
-        const title = this.portfolioDef.menuContents[i];
-        // if (menuNode.id !== "menu1" && menuNode.id !== "menu2") {
-        //   console.log(menuNode.id, title, "contents", title);
-        //   new MODAL(menuNode.id, title, "contents", title, i);
-        // }
+        const title = this.portfolioDef.menuTxts[i];
         switch (menuNode.id) {
           case "menu1":
             menuNode.setAttribute("onclick", "portfolio.randomTalk()");
+            new MODAL(menuNode.id, title, "contents", title, i, false);
+            break;
+          case "menu7":
+            new MODAL(menuNode.id, title, "contents", title, i, false);
+            break;
           default:
             new MODAL(menuNode.id, title, "contents", title, i);
             break;
@@ -113,10 +93,10 @@ const portfolio = {
       });
   },
   avater() {
-    const avaterImg = this.getTag("avaterImg");
-    avaterImg.src = "img/" + this.portfolioDef.avaterImgs.random[0];
-    avaterImg.style.height = "50%";
-    avaterImg.style.width = "50%";
+    // const avaterImg = this.getTag("avaterImg");
+    // avaterImg.src = "img/" + this.portfolioDef.avaterImgs.random[0];
+    // avaterImg.style.height = "50%";
+    // avaterImg.style.width = "50%";
   },
   talk() {
     const [talkNode, talkerName, talkContent] = [
@@ -127,17 +107,18 @@ const portfolio = {
     talkNode.classList.add("nes-container", "is-dark", "with-title");
     talkerName.classList.add("title");
     talkerName.innerText = "てっちゃん";
-    this.randomTalk();
+    this.randomTalk(talkContent);
   },
-  randomTalk() {
-    const talkNode = this.getTag("talkNode");
-    talkNode.innerText = "";
+  randomTalk(talkContent = this.getTag("talkContent")) {
+    // const talkNode = this.getTag("talkNode");
+    // talkNode.textContet = "";
+    talkContent.innerText = "";
     const randomTalk = this.portfolioDef.talkContets.random;
     const talkTxt =
       randomTalk[parseInt(Math.random() * (randomTalk.length - 0) + 0)] + "pya";
-    this.pcChat(talkNode, talkTxt, 500);
+    this.pcChat(talkContent, talkTxt, 500);
   },
-  pcChat(element, txt, delay) {
+  pcChat(element, txt, delay = 500) {
     const titleArr = Array.from(txt);
     const id = setInterval(() => {
       element.innerText += titleArr.shift();
