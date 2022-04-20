@@ -1,5 +1,15 @@
 title.load();
 
+// モーダルのテスト
+
+// const modalNode = new MODAL(
+//   "main",
+//   document.getElementById("main"),
+//   "Let's talk",
+//   "Hello",
+//   "Oooopen"
+// );
+
 // /* 共通する処理 */
 // let state = 1;
 

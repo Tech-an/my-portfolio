@@ -1,6 +1,6 @@
 const portfolio = {
   portfolioDef: {
-    menus: [
+    menuContents: [
       "はなす",
       "どうぐ",
       "そうび",
@@ -10,7 +10,7 @@ const portfolio = {
       "しらべる",
       "さくせん",
     ],
-    avaterImgs: { random: ["avater01.png"] },
+    avaterImgs: { random: ["デフォルトてつや.png"] },
     talkContets: { random: ["おはよう!", "こんにちは！", "こんばんは！"] },
     nodes: {
       exist: { mainNode: { tag: "main", css: [] } },
@@ -21,14 +21,14 @@ const portfolio = {
           parent: "main",
         },
         menuNode: { tag: "div", css: ["menu_frame"], parent: "portfolio_home" },
-        menu1: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu2: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu3: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu4: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu5: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu6: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu7: { tag: "div", css: ["menu_item"], parent: "menuNode" },
-        menu8: { tag: "div", css: ["menu_item"], parent: "menuNode" },
+        menu1: { tag: "div", css: ["menu_item", "menu1"], parent: "menuNode" },
+        menu2: { tag: "div", css: ["menu_item", "menu2"], parent: "menuNode" },
+        menu3: { tag: "div", css: ["menu_item", "menu3"], parent: "menuNode" },
+        menu4: { tag: "div", css: ["menu_item", "menu4"], parent: "menuNode" },
+        menu5: { tag: "div", css: ["menu_item", "menu5"], parent: "menuNode" },
+        menu6: { tag: "div", css: ["menu_item", "menu6"], parent: "menuNode" },
+        menu7: { tag: "div", css: ["menu_item", "menu7"], parent: "menuNode" },
+        menu8: { tag: "div", css: ["menu_item", "menu8"], parent: "menuNode" },
 
         displayNode: {
           tag: "div",
@@ -54,7 +54,6 @@ const portfolio = {
       this.portfolioDef.nodes.exist,
       this.portfolioDef.nodes.new
     );
-    console.log("hello");
     this.portfolioDef.dom.set();
     this.menu();
     this.avater();
@@ -66,16 +65,18 @@ const portfolio = {
       .map((v, i) => {
         return this.getTag(`menu${i + 1}`);
       });
-    menus.forEach((menu, i) => {
-      menu.innerText = this.portfolioDef.menus[i];
-      menu.classList.add("is-dark");
+    menus.forEach((menuNode, i) => {
+      const title = this.portfolioDef.menuContents[i];
+      new MODAL("menu" + (i + 1), title, "contents", title);
+      // menu.innerText = this.portfolioDef.menuContents[i];
+      // menuNode.classList.add("is-dark");
     });
   },
   avater() {
     const avaterImg = this.getTag("avaterImg");
     avaterImg.src = "img/" + this.portfolioDef.avaterImgs.random[0];
-    avaterImg.height = "200";
-    avaterImg.width = "100";
+    avaterImg.style.height = "50%";
+    avaterImg.style.width = "50%";
   },
   talk() {
     const [talkNode, talkerName, talkContent] = [
@@ -88,8 +89,7 @@ const portfolio = {
     talkerName.innerText = "てっちゃん";
     const randomTalk = this.portfolioDef.talkContets.random;
     const talkTxt =
-      randomTalk[parseInt(Math.random() * (randomTalk.length - 0) + 0)] +
-      "yhaaa";
+      randomTalk[parseInt(Math.random() * (randomTalk.length - 0) + 0)] + "pya";
     this.pcChat(talkContent, talkTxt, 500);
   },
   pcChat(element, txt, delay) {
