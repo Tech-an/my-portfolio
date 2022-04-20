@@ -102,7 +102,8 @@ const title = {
     yesInput.type = "radio";
     yesInput.classList.add("nes-radio", "is-dark");
     yesInput.name = "answer-dark";
-    yesInput.setAttribute("onchange", "screenTransition()");
+    yesInput.setAttribute("onclick", "screenTransition()");
+    yesInput.checked = true;
 
     const yesSpan = this.getTag("yesSpan");
     yesSpan.textContent = "Yes";
@@ -111,7 +112,6 @@ const title = {
     noInput.type = "radio";
     noInput.classList.add("nes-radio", "is-dark");
     noInput.name = "answer-dark";
-    noInput.checked = true;
 
     const noSpan = this.getTag("noSpan");
     noSpan.textContent = "No";

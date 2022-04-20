@@ -21,15 +21,46 @@ const portfolio = {
           parent: "main",
         },
         menuNode: { tag: "div", css: ["menu_frame"], parent: "portfolio_home" },
-        menu1: { tag: "div", css: ["menu_item", "menu1"], parent: "menuNode" },
-        menu2: { tag: "div", css: ["menu_item", "menu2"], parent: "menuNode" },
-        menu3: { tag: "div", css: ["menu_item", "menu3"], parent: "menuNode" },
-        menu4: { tag: "div", css: ["menu_item", "menu4"], parent: "menuNode" },
-        menu5: { tag: "div", css: ["menu_item", "menu5"], parent: "menuNode" },
-        menu6: { tag: "div", css: ["menu_item", "menu6"], parent: "menuNode" },
-        menu7: { tag: "div", css: ["menu_item", "menu7"], parent: "menuNode" },
-        menu8: { tag: "div", css: ["menu_item", "menu8"], parent: "menuNode" },
-
+        menu1: {
+          tag: "div",
+          css: ["menu_item", "talk", "menu1"],
+          parent: "menuNode",
+        },
+        menu2: {
+          tag: "div",
+          css: ["menu_item", "item", "menu2"],
+          parent: "menuNode",
+        },
+        menu3: {
+          tag: "div",
+          css: ["menu_item", "equip", "menu3"],
+          parent: "menuNode",
+        },
+        menu4: {
+          tag: "div",
+          css: ["menu_item", "states", "menu4"],
+          parent: "menuNode",
+        },
+        menu5: {
+          tag: "div",
+          css: ["menu_item", "magic", "menu5"],
+          parent: "menuNode",
+        },
+        menu6: {
+          tag: "div",
+          css: ["menu_item", "history", "menu6"],
+          parent: "menuNode",
+        },
+        menu7: {
+          tag: "div",
+          css: ["menu_item", "serach", "menu7"],
+          parent: "menuNode",
+        },
+        menu8: {
+          tag: "div",
+          css: ["menu_item", "strategy", "menu8"],
+          parent: "menuNode",
+        },
         displayNode: {
           tag: "div",
           css: ["display_frame"],
@@ -48,6 +79,7 @@ const portfolio = {
       },
     },
     dom: null,
+    isTalk: true,
   },
   home() {
     this.portfolioDef.dom = new DOM(
@@ -60,17 +92,25 @@ const portfolio = {
     this.talk();
   },
   menu() {
-    const menus = Array(8)
+    Array(8)
       .fill(0)
       .map((v, i) => {
         return this.getTag(`menu${i + 1}`);
+      })
+      .forEach((menuNode, i) => {
+        const title = this.portfolioDef.menuContents[i];
+        // if (menuNode.id !== "menu1" && menuNode.id !== "menu2") {
+        //   console.log(menuNode.id, title, "contents", title);
+        //   new MODAL(menuNode.id, title, "contents", title, i);
+        // }
+        switch (menuNode.id) {
+          case "menu1":
+            menuNode.setAttribute("onclick", "portfolio.randomTalk()");
+          default:
+            new MODAL(menuNode.id, title, "contents", title, i);
+            break;
+        }
       });
-    menus.forEach((menuNode, i) => {
-      const title = this.portfolioDef.menuContents[i];
-      new MODAL("menu" + (i + 1), title, "contents", title);
-      // menu.innerText = this.portfolioDef.menuContents[i];
-      // menuNode.classList.add("is-dark");
-    });
   },
   avater() {
     const avaterImg = this.getTag("avaterImg");
@@ -87,10 +127,15 @@ const portfolio = {
     talkNode.classList.add("nes-container", "is-dark", "with-title");
     talkerName.classList.add("title");
     talkerName.innerText = "てっちゃん";
+    this.randomTalk();
+  },
+  randomTalk() {
+    const talkNode = this.getTag("talkNode");
+    talkNode.innerText = "";
     const randomTalk = this.portfolioDef.talkContets.random;
     const talkTxt =
       randomTalk[parseInt(Math.random() * (randomTalk.length - 0) + 0)] + "pya";
-    this.pcChat(talkContent, talkTxt, 500);
+    this.pcChat(talkNode, talkTxt, 500);
   },
   pcChat(element, txt, delay) {
     const titleArr = Array.from(txt);
