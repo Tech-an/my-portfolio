@@ -10,16 +10,6 @@ const portfolio = {
       "しらべる",
       "さくせん",
     ],
-    menuContents: {
-      menu1: null,
-      menu2: {},
-      menu3: {},
-      menu4: {},
-      menu5: {},
-      menu6: {},
-      menu7: {},
-      menu8: {},
-    },
     avaterImgs: { random: ["デフォルトてつや.png"] },
     talkContets: { random: ["おはよう!", "こんにちは！", "こんばんは！"] },
     nodes: {
