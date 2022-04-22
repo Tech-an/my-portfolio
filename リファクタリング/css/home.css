@@ -1,0 +1,92 @@
+/* 全てのページに共通するスタイルの設定 */
+
+html {
+  /* デフォルトのフォントサイズを指定
+   > 各ページでフォントサイズを変更するときはremで実施 */
+  font-size: 16px;
+}
+body {
+  /* backgroundImageの設定 */
+  background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  /* フォントの設定 */
+  color: white;
+  font-family: "Press Start 2P";
+  /* コンテンツの表示幅の設定 */
+}
+
+#portfolio {
+  /* 子要素に対して flex を指定 */
+  display: flex;
+  /* 見た目のサイズを指定 */
+  width: 1000px;
+  height: 500px;
+  margin: 100px auto;
+  padding: 60px;
+  /* 見た目を定義 */
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid white 2px;
+}
+
+#menu_frame {
+  /* 横幅を指定（flex） */
+  flex-grow: 1.3;
+  font-size: 1.5rem;
+}
+
+#pankuzu {
+  padding: 0 0 5px 20px;
+}
+
+#menu {
+  /* メニューのフレームを定義 */
+  border: solid white 2px;
+  border-radius: 8%;
+  padding: 15px 0;
+  /* メニューのサイズを定義 */
+  /* TODO このwidth/heightを調整することでメニューサイズを変更できる */
+  width: 50%;
+  height: 50%;
+  /* 子要素に対して flex を指定 */
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: start;
+}
+
+#menu_item {
+  /* ブロック要素の縦幅・横幅は固定（縦: 60px, 横：親の半分->メニューは2列組み） */
+  height: 30px;
+  padding: 15px 0; /* paddingを指定することでブロック内の値を上下中央に揃えている */
+  width: 50%;
+  /* 表示する文字の位置を調整 */
+  text-align: center;
+}
+
+#menu_item:hover {
+  font-weight: bold;
+}
+
+#avater_frame {
+  /* 横幅を指定（flex） */
+  flex-grow: 1;
+  /* アバターの画像を設定 */
+  background-size: cover;
+  background-position: center;
+  background-image: url("/img/avater/デフォルトてつや.png");
+  /* 子要素に対する相対位置を定義 */
+  position: relative;
+}
+
+#chat {
+  /* チャットボックスの位置を指定 */
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  /* チャットボックスのサイズを指定 */
+  width: 400px;
+  /* チャットボックスの見た目を定義 */
+  background-color: rgba(0, 0, 0, 0.9);
+}
