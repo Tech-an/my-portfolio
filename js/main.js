@@ -1,3 +1,4 @@
+const BODY = document.getElementById("body");
 title.load();
 
 // モーダルのテスト

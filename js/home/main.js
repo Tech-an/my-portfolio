@@ -1,3 +1,95 @@
+class PORTFOLIO {
+  /**
+   * ポートフォリオ画面の menu, avater, chat 要素を制御する
+   *
+   */
+  constructor() {
+    this.portfolioDef = {
+      menu: {
+        /**「はなす」と「しらべる」はメニュー画面を変更しないため定義していない */
+        homeMenu: [
+          ["はなす", talk()],
+          ["どうぐ", item()],
+          ["そうび", equip()],
+          ["つよさ", states()],
+          ["じゅもん", magic()],
+          ["せんれき", history()],
+          ["しらべる", serach()],
+          ["さくせん", strategy()],
+        ],
+        item: [
+          "サンタクロースの衣装",
+          "学生証",
+          "会員証",
+          "内定",
+          "資格",
+          "本",
+          "パソコン",
+          "コーヒーメーカー",
+          "オロポ",
+        ],
+        equip: [
+          "みぎて：本",
+          "ひだりて：パソコン",
+          "アタマ：なし",
+          "からだ：ポールスミスの服",
+          "アクセ１：ポールスミスの靴",
+          "アクセ２：ポールスミスの財布",
+        ],
+        states: ["レベル：", "長所：", "短所："],
+        magic: ["メラ"],
+        history: [
+          "...",
+          "名古屋工業大学",
+          "名古屋大学",
+          "名古屋大学TA",
+          "大同大学TA",
+          "AKconsulting株式会社インターン",
+        ],
+        strategy: ["ガンガン行こうぜ", "人生楽しんだもん勝ち"],
+      },
+      avater: {
+        defalut: "デフォルトてつや.png",
+        chat: "口開きてつや.png",
+        smile: "笑顔てつや.png",
+      },
+      chat: {
+        random: ["おはよう!", "こんにちは！", "こんばんは！"],
+      },
+      //TODO : 特定のフォルダ内のファイルを全取得できるようにしたい -> backgroundは状態として保持しなくても良いようにする
+      background: ["栄サンシャイン.png", "ローマ.png", "名古屋城.png"],
+    };
+    this.drawDefault();
+    /**
+     * 画面要素を作成する
+     * 　menu要素を作成する（MENUクラスのインスタンス化?）
+     * 　avater要素を作成する
+     * 　chat要素を作成する
+     * cssのスタイルを適応する
+     * 　flexなど
+     *
+     * (画面に表示させる文字, 必要があればonclick時に起動する関数) → MENU → (画面を描画)
+     */
+  }
+  drawDefault() {
+    this.drawBackImg(this.portfolioDef.background);
+  }
+  drawMenu() {}
+  /**  drawMenuItem() {}
+  drawMenuEquip() {}
+  drawMenuStates() {}
+  drawMenuMagic() {}
+  drawMenuHistory() {}
+  drawMenuStrategy() {} */
+  drawAvater() {}
+  drawChat() {}
+  drawBackImg(imgArr) {
+    BODY.style.background = `url(../img/${
+      imgArr[Math.random() * (imgArr.length - 0)]
+    }.png) no-repeat fixed`;
+  }
+}
+
 const portfolio = {
   portfolioDef: {
     menuTxts: [
