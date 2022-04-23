@@ -1,11 +1,3 @@
-/* TODO */
-body {
-  /* background: url(../img/名古屋城.png) no-repeat fixed; */
-  background: url(../img/サンシャイン栄.png) no-repeat fixed;
-  background-size: cover;
-  background-position: center;
-}
-
 #portfolio_home {
   display: flex;
   width: 1000px;

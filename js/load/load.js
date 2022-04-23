@@ -11,6 +11,7 @@ const title = {
       "is-error",
       "is-pattern",
     ],
+    background: ["サンシャイン栄.png", "ローマ.png", "名古屋城.png"],
     loadQuestion: "go next..?",
     nodes: {
       exist: { mainNode: { tag: "main", css: [] } },
@@ -119,6 +120,13 @@ const title = {
   titleEnd() {
     this.titleDef.dom.delete();
     // state++; //global
+  },
+  drawBackImg(imgArr) {
+    document.getElementById(
+      "background"
+    ).style.backgroundImage = `url(../img/background/${
+      imgArr[parseInt(Math.random() * (imgArr.length - 0))]
+    })`;
   },
 };
 

@@ -1,5 +1,11 @@
 body {
   background-color: black;
+  /* background: url(../img/background/名古屋城.png) no-repeat fixed; */
+  /* background: url(../img/background/サンシャイン栄.png) no-repeat fixed; */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 html,
