@@ -1,71 +1,88 @@
-.modal_wrap input {
+#mask {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#modal {
+  background: #fff;
+  width: 80%;
+  height: 75%;
+  padding: 30px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: transform 0.4s;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 2;
+}
+
+#modal_header {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#modal_title {
+  color: black;
+  margin-left: 30px;
+  font-size: 2rem;
+}
+
+#modal_close {
+  /* クローズボタンの装飾を施す */
+  color: black;
+  position: absolute;
+  right: 5px;
+  top: -20px;
+  font-size: 3rem;
+}
+
+#modal_contents {
+  /* display: flex; */
+  height: 80%;
+}
+
+#modal_chapture {
+  /* flex-grow: 1; */
+  height: 100%;
+}
+#modal_img {
+  width: 500px;
+  border: 10px solid #dfd3b9;
+  border-radius: 30%;
+}
+
+#modal_text {
+  /* flex-grow: 1; */
+  color: white;
+  opacity: 0.8;
+  font-size: 1.5rem;
+
+  background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+  border: 30px solid beige;
+  border-radius: 30%;
+
+  height: 100%;
+  text-align: center;
+}
+
+#mask.hidden {
   display: none;
 }
 
-.modal_overlay {
-  display: flex;
-  justify-content: center;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: opacity 0.5s, transform 0s 0.5s;
-  transform: scale(0);
-}
-
-.modal_trigger {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.modal_content {
-  align-self: center;
-  width: 80%;
-  max-width: 1000px;
-  height: 500px;
-  padding: 30px 30px 15px;
-  box-sizing: border-box;
-  background: #fff;
-  line-height: 1.4em;
-  transform: scale(0.5) rotateX(-270deg);
-  transition: 0.5s;
-}
-
-.close_button {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.modal_wrap input:checked ~ .modal_overlay {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.5s;
-}
-
-.modal_wrap input:checked ~ .modal_overlay .modal_content {
-  transform: scale(1) rotateX(0deg);
-}
-
-.open_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  color: white;
-  padding: 8px 16px;
-}
-
-.open_button:hover {
-  font-weight: bold;
+#modal.hidden {
+  /* transform: translate(0, -500px); */
+  display: none;
 }
