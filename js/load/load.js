@@ -51,7 +51,6 @@ const title = {
     this.titleDef.dom.set();
     this.loadTitle(loadTime_ms / 3);
     this.loadBar(loadTime_ms);
-    this.drawBackImg(this.titleDef.background);
   },
   loadTitle(loadTime_ms) {
     // const titleContent = this.getTag("titleContent");

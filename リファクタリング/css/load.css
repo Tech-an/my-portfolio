@@ -1,0 +1,35 @@
+#title_display {
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#title_content {
+  width: 1000px;
+  height: 500px;
+  border: solid 2px white;
+  margin: 80px auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#title_txt {
+  height: 330px;
+  line-height: 330px;
+}
+
+#title_bar {
+  text-align: center;
+}
+
+#title_radio {
+  background-color: #212529;
+  width: 28%;
+  margin: 15px auto;
+}
+
+#title_radio_yes,
+#title_radio_no {
+  padding: 1.5rem;
+  margin: 0;
+}
