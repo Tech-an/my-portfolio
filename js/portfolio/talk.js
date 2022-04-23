@@ -1,5 +1,5 @@
 // 文章をコマ送りにして表示するための関数
-function chatText(element, txt, button = null, delay = 150) {
+function chatText(element, txt, button = null, delay = 100) {
   if (button !== null) resetTrigger(button);
   element.textContent = "　";
   const titleArr = Array.from(txt);
@@ -13,6 +13,7 @@ function chatText(element, txt, button = null, delay = 150) {
       if (button !== null) setTrriger(element, button);
     }
   }, delay);
+  return [chatTextId, chatAvaterId];
 }
 
 // アバターが喋っているように表示するための関数
@@ -34,12 +35,43 @@ function defaultAvater() {
   ).style.backgroundImage = `url(../img/avater/デフォルトてつや.png)`;
 }
 
+// 「はなす」をクリックしたときに日本時刻に合わせて挨拶をするための関数
+function greetChat(element) {
+  const texts = [
+    "まだ起きてたの？",
+    "おはよう！",
+    "こんにちは！",
+    "こんばんは！",
+  ];
+  const hourIndex = Math.floor(new Date().getHours() / 6);
+  const name = localStorage.name === undefined ? "Geust" : localStorage.name;
+  chatText(element, name + "さん、" + texts[hourIndex]);
+}
+
+const textDB = [
+  "実は私はサンタクロースです。",
+  "最近はオロポにハマっているよ！",
+  "ファッションはポールスミスが好きだよ..(高いけど..)",
+  "こんばんみ！",
+  "最近新聞を購読したよ！もう4日分も溜まってしまった..笑",
+  "海外旅行に行きたいなぁ～",
+  "youtubeは東海オンエア9割..笑",
+];
+let textStack = [];
+
 // 「はなす」をクリックしたときにランダムに話すための関数
 function randomChat(element, button) {
-  button.onclick = () => {};
-  const texts = ["おはよう", "こんにちは", "こんばんは"];
-  const text = texts[parseInt(Math.random() * texts.length)];
-  chatText(element, text, button);
+  if (textStack.length === 0) textStack = [...textDB];
+  const text = textStack.splice(
+    Math.floor(Math.random() * textStack.length),
+    1
+  )[0];
+  const [textId, avaterId] = chatText(element, text, button);
+  button.onclick = () => {
+    clearInterval(textId);
+    clearInterval(avaterId);
+    randomChat(element, button);
+  };
 }
 
 function resetTrigger(button) {

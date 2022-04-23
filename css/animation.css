@@ -1,0 +1,33 @@
+.fadein_center {
+  animation: fadein_center 1s forwards;
+}
+
+@keyframes fadein_center {
+  0% {
+    transform: scale(0, 100%);
+  }
+  100% {
+    transform: scale(100%, 100%);
+  }
+}
+
+.rotate {
+  animation: rotate 2.5s forwards;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(70%, 70%) rotate(1100deg);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(70%, 70%) rotate(1080deg);
+  }
+  100% {
+    transform: scale(100%, 100%) rotate(1080deg);
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <dialog class="nes-dialog" id="dialog-default">
+        <form method="dialog">
+          <p class="title">your name is ...</p>
+          <p>○○ ?</p>
+          <menu class="dialog-menu">
+            <button class="nes-btn is-primary">Yes</button>
+            <button
+              class="nes-btn"
+              onclick="document.getElementById('dialog-inputName').showModal();"
+            >
+              No
+            </button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="nes-dialog" id="dialog-inputName">
+        <form method="dialog">
+          <p class="title">your name is ...</p>
+          <div class="nes-field">
+            <label for="name_field"></label>
+            <input type="text" id="name_field" class="nes-input" />
+          </div>
+          <menu class="dialog-menu">
+            <button class="nes-btn is-primary" onclick="home()">Enter</button>
+          </menu>
+        </form>
+      </dialog>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>

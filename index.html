@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <link rel="stylesheet" href="css/menu/myWay.css" />
     <title>TETSUYA SATO</title>
   </head>
   <body>
@@ -25,6 +27,7 @@
       <div id="title_display">
         <div id="title_content">
           <h1 id="title_txt"></h1>
+          <!-- ポートフォリオ画面に遷移するかどうかを選択するラジオボタン -->
           <h3>go next..?</h3>
           <div id="title_radio">
             <label id="title_radio_yes">
@@ -33,9 +36,8 @@
                 type="radio"
                 class="nes-radio is-dark"
                 name="answer-dark"
-                onclick="home()"
               />
-              <span>Yes</span>
+              <span onclick="confirmName()">Yes</span>
             </label>
             <label id="title_radio_no">
               <input
@@ -46,7 +48,47 @@
               <span>No</span>
             </label>
           </div>
+          <!-- ユーザーの名前を確認するためのモーダル -->
+          <section id="modal-name-confirm">
+            <dialog class="nes-dialog" id="dialog-confirm">
+              <form method="dialog">
+                <p class="title">your name is ...</p>
+                <p id="user-name"></p>
+                <menu class="dialog-menu">
+                  <button class="nes-btn is-primary" onclick="home()">
+                    Yes
+                  </button>
+                  <button class="nes-btn" onclick="inputForm()">No</button>
+                </menu>
+              </form>
+            </dialog>
+            <dialog class="nes-dialog" id="dialog-input">
+              <form method="dialog">
+                <p class="title">your name is ...</p>
+                <div class="nes-field">
+                  <label for="name_field"></label>
+                  <input
+                    type="text"
+                    id="name_field"
+                    class="nes-input"
+                    maxlength="10"
+                    autocomplete="off"
+                  />
+                </div>
+                <menu class="dialog-menu">
+                  <button
+                    class="nes-btn is-primary"
+                    onclick="inputName(), home()"
+                  >
+                    Enter
+                  </button>
+                  <button class="nes-btn">Cancel</button>
+                </menu>
+              </form>
+            </dialog>
+          </section>
         </div>
+        <!-- ローディング状況を表示するプログレスバー -->
         <div id="title_bar">
           <h2>Now Loading...</h2>
           <progress id="progressBar"></progress>
@@ -59,6 +101,8 @@
     <div id="mask" class="hidden"></div>
 
     <script src="js/utils.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/name.js"></script>
     <script src="js/load.js"></script>
     <script src="js/portfolio/talk.js"></script>
     <script src="js/portfolio/open.js"></script>

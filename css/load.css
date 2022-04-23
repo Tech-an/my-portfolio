@@ -33,3 +33,12 @@
   padding: 1.5rem;
   margin: 0;
 }
+
+#dialog-confirm,
+#dialog-input {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}

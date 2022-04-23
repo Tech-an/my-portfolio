@@ -1,0 +1,19 @@
+#menu_expansion_oneColumn {
+  /* メニューのフレームを定義 */
+  border: solid white 2px;
+  border-radius: 8%;
+  /* メニューのサイズを定義 */
+  width: 70%;
+  height: 95%;
+  /* 子要素に対して flex を指定 */
+}
+
+#menu_item_oneColumn {
+  /* ブロック要素の縦幅・横幅は固定（縦: 60px, 横：親の半分->メニューは2列組み） */
+  height: 30px;
+  /* padding: 15px 10px; paddingを指定することでブロック内の値を上下中央に揃えている */
+  margin: 4% 3.5%;
+  width: 100%;
+  /* 表示する文字の位置を調整 */
+  line-height: 1; /* defaultでは1.0, 他のstylesheetでbodyに1.5を指定しており、その影響を相殺するため */
+}

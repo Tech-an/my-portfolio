@@ -1,9 +1,13 @@
 function home() {
-  // step0. アバターの表情を一定時間間隔で変化させる関数を読み込む
+  const main = document.getElementsByTagName("main")[0];
+
+  // step0-1. アバターの表情を一定時間間隔で変化させる関数を読み込む
   laugh();
 
+  // step0-2. ふわっと表示するアニメーションを加える
+  animation(main.id === "load");
+
   // step1. <main></main>を空にする
-  const main = document.getElementsByTagName("main")[0];
   main.innerHTML = "";
   main.id = "portfolio"; // mainタグに設定されているidをportfolioに書き換える
 
@@ -17,22 +21,22 @@ function home() {
   const menu = document.createElement("div");
   /* menuの子要素 */
   const talk = document.createElement("div");
-  const item = document.createElement("div");
-  const equip = document.createElement("div");
-  const states = document.createElement("div");
-  const magic = document.createElement("div");
-  const history = document.createElement("div");
-  const search = document.createElement("div");
-  const strategy = document.createElement("div");
+  const myWay = document.createElement("div");
+  const skill = document.createElement("div");
+  const license = document.createElement("div");
+  const organization = document.createElement("div");
+  const todo = document.createElement("div");
+  const future = document.createElement("div");
+  const memory = document.createElement("div");
   const menuItems = [
     talk,
-    item,
-    equip,
-    states,
-    magic,
-    history,
-    search,
-    strategy,
+    myWay,
+    skill,
+    license,
+    organization,
+    todo,
+    future,
+    memory,
   ];
   /* avaterFrameの子要素 */
   const chat = document.createElement("div");
@@ -43,7 +47,7 @@ function home() {
   // !【step2-2】DOMツリーに追加する
   main.append(menuFrame, avaterFrame);
   menuFrame.append(pankuzu, menu);
-  menu.append(talk, item, equip, states, magic, history, search, strategy);
+  menu.append(talk, myWay, skill, license, organization, todo, future, memory);
   avaterFrame.append(chat);
   chat.append(chatTitle, chatContent);
 
@@ -53,11 +57,13 @@ function home() {
   avaterFrame.id = "avater_frame";
   /* menuFrameの子要素 */
   pankuzu.id = "pankuzu";
+  pankuzu.classList.add("from-left", "nes-pointer");
   menu.id = "menu";
   /* menuの子要素 */
-  [talk, item, equip, states, magic, history, search, strategy].forEach(
+  [talk, myWay, skill, license, organization, todo, future, memory].forEach(
     (element) => {
-      element.id = "menu_item";
+      element.id = "menu_item_default";
+      element.classList.add("from-left", "nes-pointer", "menu_item");
     }
   );
   /* avaterFrameの子要素 */
@@ -65,6 +71,7 @@ function home() {
   chat.classList.add("nes-container", "is-dark", "with-title");
   /* chatの子要素 */
   chatTitle.className = "title";
+  chatContent.id = "chat_content";
 
   // !【step2-4】contextを付与する
   /* パンくずリスト */
@@ -72,20 +79,30 @@ function home() {
   /* メニュー画面 */
   const menusContent = [
     "はなす",
-    "どうぐ",
-    "そうび",
-    "つよさ",
-    "じゅもん",
-    "せんれき",
-    "しらべる",
-    "さくせん",
+    "道のり",
+    "スキル・経験",
+    "資格・実績",
+    "所属組織",
+    "やってること",
+    "やりたいこと",
+    "思い出",
   ];
+  // const menusContent = [
+  //   "はなす",
+  //   "どうぐ",
+  //   "そうび",
+  //   "つよさ",
+  //   "じゅもん",
+  //   "せんれき",
+  //   "しらべる",
+  //   "さくせん",
+  // ];
   menuItems.forEach((element, i) => {
     element.textContent = menusContent[i];
   });
   /* チャット画面 */
   chatTitle.textContent = "TETSUYA";
-  chatContent.textContent = "はじめまして！○○さん";
+  chatContent.textContent = greetChat(chatContent);
 
   // !【step2-5】onclickに関数を付与する
   // !【step2-5-1】「はなす」
@@ -94,60 +111,61 @@ function home() {
     randomChat(chatContent, talk);
   };
 
-  // !【step2-5-2】「どうぐ」
-  /* 「どうぐ」を押すと、メニュー画面が書き変わる */
-  item.onclick = () => {
-    openMenu("item", pankuzu, menu, [
-      [
-        "サンタクロースの衣装",
-        "サンタ.jpg",
-        "NPO法人であるチャリティーサンタで活動した時の写真である",
-      ],
-      ["学生証", null],
-      ["会員証", null],
-      ["内定", null],
-      ["資格", null],
-      ["本", null],
-      ["パソコン", null],
-      ["コーヒーメーカー", null],
-      ["オロポ", null],
+  // !【step2-5-2】「道のり」
+  /* 「道のり」を押すと、メニュー画面が書き変わる */
+  myWay.onclick = () => {
+    openMenu("myWay", pankuzu, menu, [
+      ["【0歳】静岡で生誕"],
+      ["【2歳】秋田に引っ越し"],
+      ["【2~18歳】有浦小→東中→国際情報学院高等学校"],
+      ["【18歳】秋田県立大学-システム科学技術学部へ"],
+      ["【22歳】名古屋工業大学へ(研究生)"],
+      ["【23歳-】名古屋大学大学院-情報学研究科へ"],
+      ["【24歳】長期インターン(AKconsulting株式会社)"],
+      ["【25歳(NOW!)】ラストモラトリアム！"],
     ]);
   };
 
-  // !【step2-5-3】「そうび」
-  equip.onclick = () => {
-    openMenu("equip", pankuzu, menu, [
-      ["ぶき：本", null, null],
-      ["たて：パソコン", null],
-      ["あたま：なし", null],
-      ["からだ：ポールスミスの服", null],
-      ["アクセ１：なし"],
-      ["アクセ２：なし"],
+  // !【step2-5-3】「スキル・経験」
+  skill.onclick = () => {
+    openMenu("skill", pankuzu, menu, [
+      ["【HTML/CSS/JavaScript】大学でTAの経験有り(継続)", null, null],
+      ["【C言語】大学でTAの経験有り(継続)", null, null],
+      ["【python】長期インターンで業務経験有り", null, null],
+      ["【GoogleAppsScript】長期インターンで業務経験有り", null, null],
+      ["【タイピング】寿司打で1万円お得にできます(6.4回/s)", null, null],
+      ["【未習得】TypeScript, React, Vue, Flask, Docker, AWS", null, null],
     ]);
   };
 
-  // !【step2-5-4】「つよさ」
-  states.onclick = () => {
-    openMenu(pankuzu, menu, [
-      ["Lv：25"],
-      ["さいだいHP：500"],
-      ["さいだいMP：226"],
+  // !【step2-5-4】「資格・実績」
+  license.onclick = () => {
+    openMenu("license", pankuzu, menu, [
+      ["【学会発表1】平成30年電気学会全国大会(2019.3)", null, null],
+      ["【学会発表2】電気学会C部門大会(沖縄)2019年09月", null, null],
+      ["【業務経験】AKconsulting株式会社('21/5-'22/3)", null, null],
+      ["【資格1】応用情報技術者試験", null, null],
+      ["【資格2】G検定", null, null],
+      ["【資格3】TOEIC-720点", null, null],
+      ["【資格-挑戦中】E資格", null, null],
+      ["【資格-そのうち..】プロマネ, 中小企業診断士", null, null],
     ]);
   };
 
-  // !【step2-5-5】「じゅもん」
-  magic.onclick = () => {
-    openMenu(pankuzu, menu, [
-      ["ホイミ"],
-      ["バイキルト"],
-      ["メラ"],
-      ["マヒャド"],
+  // !【step2-5-5】「所属組織」
+  organization.onclick = () => {
+    openMenu("organization", pankuzu, menu, [
+      ["【'20-】チャリティーサンタ-名古屋支部(副代表)", null, null],
+      ["【'20-】名古屋大学大学院-シミュレーション科学研究室", null, null],
+      ["【'22-】GeekSalon(受講生-14期生)", null, null],
+      ["【'22-】AVILEN-全人類が分かるE資格コース(受講生)", null, null],
+      ["【'22-】コナミスポーツクラブ通ってます。。笑", null, null],
     ]);
   };
 
-  // !【step2-5-6】「せんれき」
-  history.onclick = () => {
-    openMenu(pankuzu, menu, [
+  // !【step2-5-6】「やってること」
+  todo.onclick = () => {
+    openMenu("todo", pankuzu, menu, [
       ["1997年: 生誕 (2/26)"],
       ["2019年: 秋田県立大学卒業"],
       ["2019年: 名古屋工業大学入学 (研究生)"],
@@ -155,10 +173,17 @@ function home() {
     ]);
   };
 
-  // !【step2-5-7】「しらべる」
-
-  // !【step2-5-8】「さくせん」
-  strategy.onclick = () => {
-    openMenu(pankuzu, menu, [["ガンガン行こうぜ"]]);
+  // !【step2-5-7】「やりたいこと」
+  future.onclick = () => {
+    openMenu("future", pankuzu, menu, [
+      ["1997年: 生誕 (2/26)"],
+      ["2019年: 秋田県立大学卒業"],
+      ["2019年: 名古屋工業大学入学 (研究生)"],
+      ["2020年: 名古屋大学大学院入学"],
+    ]);
+  };
+  // !【step2-5-8】「思い出」
+  memory.onclick = () => {
+    openMenu("memory", pankuzu, menu, [["ガンガン行こうぜ"]]);
   };
 }
