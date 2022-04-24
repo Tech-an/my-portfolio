@@ -5,7 +5,8 @@ function home() {
   laugh();
 
   // step0-2. ふわっと表示するアニメーションを加える
-  animation(main.id === "load");
+  const isFirstLoad = main.id === "load";
+  animation(isFirstLoad);
 
   // step1. <main></main>を空にする
   main.innerHTML = "";
@@ -26,7 +27,7 @@ function home() {
   const license = document.createElement("div");
   const organization = document.createElement("div");
   const todo = document.createElement("div");
-  const future = document.createElement("div");
+  const bucket = document.createElement("div");
   const memory = document.createElement("div");
   const menuItems = [
     talk,
@@ -35,7 +36,7 @@ function home() {
     license,
     organization,
     todo,
-    future,
+    bucket,
     memory,
   ];
   /* avaterFrameの子要素 */
@@ -47,7 +48,7 @@ function home() {
   // !【step2-2】DOMツリーに追加する
   main.append(menuFrame, avaterFrame);
   menuFrame.append(pankuzu, menu);
-  menu.append(talk, myWay, skill, license, organization, todo, future, memory);
+  menu.append(talk, myWay, skill, license, organization, todo, bucket, memory);
   avaterFrame.append(chat);
   chat.append(chatTitle, chatContent);
 
@@ -60,7 +61,7 @@ function home() {
   pankuzu.classList.add("from-left", "nes-pointer");
   menu.id = "menu";
   /* menuの子要素 */
-  [talk, myWay, skill, license, organization, todo, future, memory].forEach(
+  [talk, myWay, skill, license, organization, todo, bucket, memory].forEach(
     (element) => {
       element.id = "menu_item_default";
       element.classList.add("from-left", "nes-pointer", "menu_item");
@@ -83,26 +84,20 @@ function home() {
     "スキル・経験",
     "資格・実績",
     "所属組織",
-    "やってること",
-    "やりたいこと",
+    "ToDo List",
+    "Bucket List",
     "思い出",
   ];
-  // const menusContent = [
-  //   "はなす",
-  //   "どうぐ",
-  //   "そうび",
-  //   "つよさ",
-  //   "じゅもん",
-  //   "せんれき",
-  //   "しらべる",
-  //   "さくせん",
-  // ];
   menuItems.forEach((element, i) => {
     element.textContent = menusContent[i];
   });
-  /* チャット画面 */
   chatTitle.textContent = "TETSUYA";
-  chatContent.textContent = greetChat(chatContent);
+  /* チャット画面 */
+  if (isFirstLoad) {
+    chatContent.textContent = greetChat(chatContent);
+  } else {
+    chatContent.textContent = randomChat(chatContent, talk);
+  }
 
   // !【step2-5】onclickに関数を付与する
   // !【step2-5-1】「はなす」
@@ -133,7 +128,11 @@ function home() {
       ["【C言語】大学でTAの経験有り(継続)", null, null],
       ["【python】長期インターンで業務経験有り", null, null],
       ["【GoogleAppsScript】長期インターンで業務経験有り", null, null],
-      ["【タイピング】寿司打で1万円お得にできます(6.4回/s)", null, null],
+      [
+        "【タイピング】寿司打で1万円お得にできます(6.4回/s)",
+        "sushida.png",
+        "挑戦待ってます!笑",
+      ],
       ["【未習得】TypeScript, React, Vue, Flask, Docker, AWS", null, null],
     ]);
   };
@@ -155,35 +154,54 @@ function home() {
   // !【step2-5-5】「所属組織」
   organization.onclick = () => {
     openMenu("organization", pankuzu, menu, [
-      ["【'20-】チャリティーサンタ-名古屋支部(副代表)", null, null],
-      ["【'20-】名古屋大学大学院-シミュレーション科学研究室", null, null],
-      ["【'22-】GeekSalon(受講生-14期生)", null, null],
+      [
+        "【'20-】チャリティーサンタ-名古屋支部(副代表)",
+        "santa.png",
+        "チャリティーサンタはクリスマスイブにサンタの恰好をして子どもたちの家にプレゼントを届けに行くボランティアだよ！",
+      ],
+      [
+        "【'20-】名古屋大学 情報学研究科 複雑系科学専攻",
+        "nagoyaUniversity.jpg",
+        "名古屋大学は広すぎます（笑）テーマパークかって思うくらい広いので、一度来てみてください（笑）",
+      ],
+      [
+        "【'22-】GeekSalon(受講生-14期生)",
+        "webex.png",
+        "大学生限定プログラミング学習コミュニティ『Geek Salon』! エンジニア仲間と出会えて楽しいです！",
+      ],
       ["【'22-】AVILEN-全人類が分かるE資格コース(受講生)", null, null],
-      ["【'22-】コナミスポーツクラブ通ってます。。笑", null, null],
     ]);
   };
 
-  // !【step2-5-6】「やってること」
+  // !【step2-5-6】「今やってること」
   todo.onclick = () => {
     openMenu("todo", pankuzu, menu, [
-      ["1997年: 生誕 (2/26)"],
-      ["2019年: 秋田県立大学卒業"],
-      ["2019年: 名古屋工業大学入学 (研究生)"],
-      ["2020年: 名古屋大学大学院入学"],
+      ["【英会話】英会話のハードルを下げる"],
+      ["【海外】学生期間中に海外旅行に1回は行く"],
+      ["【筋肉】いわゆるムキムキになる"],
+      ["【E資格】講座を修了して資格を獲得する"],
+      ["【Geek】成果物を作り出せるようになる"],
+      ["【研究】楽しく修論を執筆して卒業する"],
+      ["【サンタ】メンバーが主体的に輝ける場を作る"],
+      ["【ビジネス】投資・副業・個人事業の経験を持つ"],
     ]);
   };
 
-  // !【step2-5-7】「やりたいこと」
-  future.onclick = () => {
-    openMenu("future", pankuzu, menu, [
-      ["1997年: 生誕 (2/26)"],
-      ["2019年: 秋田県立大学卒業"],
-      ["2019年: 名古屋工業大学入学 (研究生)"],
-      ["2020年: 名古屋大学大学院入学"],
+  // !【step2-5-7】「死ぬまでにやりたいこと」
+  bucket.onclick = () => {
+    openMenu("bucket", pankuzu, menu, [
+      ["【1】タワーマンションに住む"],
+      ["【2】年齢 + 1ヵ国 の旅行経験を持つ"],
+      ["【3】海外に住みながら働く"],
+      ["【4】トライアスロンに参加する"],
+      ["【5】会社を起業・経営する"],
+      ["【6】親孝行をする"],
+      ["【7】就職先で30までに年収1,000万を達成する"],
+      ["【8】めっちゃ良い車に乗る"],
     ]);
   };
   // !【step2-5-8】「思い出」
   memory.onclick = () => {
-    openMenu("memory", pankuzu, menu, [["ガンガン行こうぜ"]]);
+    openMenu("memory", pankuzu, menu, [["coming soon...笑"]]);
   };
 }

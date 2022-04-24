@@ -10,12 +10,12 @@
 
 #modal {
   background: #fff;
-  width: 80%;
-  height: 75%;
+  width: 1240px;
+  /* height: 75%; */
   padding: 30px;
   border-radius: 4px;
   position: absolute;
-  top: 40px;
+  top: 160px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -45,12 +45,12 @@
 }
 
 #modal_contents {
-  /* display: flex; */
+  display: flex;
   height: 80%;
 }
 
 #modal_chapture {
-  /* flex-grow: 1; */
+  flex-grow: 1;
   height: 100%;
 }
 #modal_img {
@@ -60,19 +60,18 @@
 }
 
 #modal_text {
-  /* flex-grow: 1; */
-  color: white;
+  flex-grow: 1;
+  color: black;
+  font-weight: bold;
   opacity: 0.8;
   font-size: 1.5rem;
+  padding: 5%;
 
-  background-color: black;
+  /* background-color: black; */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-
-  border: 30px solid beige;
-  border-radius: 30%;
 
   height: 100%;
   text-align: center;

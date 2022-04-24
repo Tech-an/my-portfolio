@@ -5,7 +5,7 @@ function backImg(imgArr) {
   })`;
 }
 
-// !【注意】modalImg は item/サンタクロース.png のような入力値を求める
+// !【注意】modalImg は 引数modalImgはitem/サンタクロース.png のような入力値を求める
 function modal(openElement, modalTitle, modalImg, modalText) {
   // step0. 必要な要素を取得する
   const main = document.getElementsByTagName("main")[0];
@@ -29,7 +29,7 @@ function modal(openElement, modalTitle, modalImg, modalText) {
   modal.append(header, contents);
   header.append(title, close);
   contents.append(capture, text);
-  // capture.append(img);
+  capture.append(img);
 
   // step3. 要素に必要なclass,idを追加する
   modal.id = "modal";
@@ -45,8 +45,8 @@ function modal(openElement, modalTitle, modalImg, modalText) {
   // step4. 要素に値を追加する
   title.textContent = modalTitle;
   close.textContent = "×";
-  text.style.backgroundImage = `url(img/${modalImg})`;
-  // img.src = `img/${modalImg}`;
+  // text.style.backgroundImage = `url(img/${modalImg})`;
+  img.src = `img/${modalImg}`;
   text.textContent = modalText;
 
   // step5. 要素にイベントを追加する

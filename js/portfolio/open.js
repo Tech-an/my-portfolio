@@ -25,6 +25,9 @@ function openMenu(menuName, pankuzu, menu, menuItemDef) {
     case "skill":
     case "license":
     case "organization":
+    case "todo":
+    case "bucket":
+    case "memory":
       parentId = "menu_expansion_oneColumn";
       childId = "menu_item_oneColumn";
       break;
