@@ -22,9 +22,12 @@ function __chatAvater(delay = 200) {
   let i = 0;
   avaterImgs = ["chatTetsuya.png", "defaultTetsuya.png"];
   return setInterval(() => {
-    avaterFrame.style.backgroundImage = `url(../img/avater/${
+    avaterFrame.style.backgroundImage = `url(https://github.com/Tech-an/my-portfolio/blob/master/img/avater/${
       avaterImgs[i++ % 2]
     })`;
+    // avaterFrame.style.backgroundImage = `url(../img/avater/${
+    //   avaterImgs[i++ % 2]
+    // })`;
   }, delay);
 }
 
@@ -32,7 +35,8 @@ function __chatAvater(delay = 200) {
 function defaultAvater() {
   document.getElementById(
     "avater_frame"
-  ).style.backgroundImage = `url(../img/avater/defaultTetsuya.png)`;
+    // ).style.backgroundImage = `url(../img/avater/defaultTetsuya.png)`;
+  ).style.backgroundImage = `url(https://github.com/Tech-an/my-portfolio/blob/master/img/avater/defaultTetsuya.png)`;
 }
 
 // 「はなす」をクリックしたときに日本時刻に合わせて挨拶をするための関数

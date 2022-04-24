@@ -48,6 +48,12 @@ function openMenu(menuName, pankuzu, menu, menuItemDef) {
     p.textContent = value;
     // step7. 作成した要素にonclick時のイベントを付与する
     if (img !== null && text !== null)
-      modal(p, value, `${menuName}/${img}`, text);
+      // modal(p, value, `${menuName}/${img}`, text);
+      modal(
+        p,
+        value,
+        `https://github.com/Tech-an/my-portfolio/blob/master/img/${menuName}/${img}`,
+        text
+      );
   });
 }
