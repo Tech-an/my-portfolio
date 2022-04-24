@@ -20,7 +20,7 @@ function chatText(element, txt, button = null, delay = 100) {
 function __chatAvater(delay = 200) {
   const avaterFrame = document.getElementById("avater_frame");
   let i = 0;
-  avaterImgs = ["口開きてつや.png", "デフォルトてつや.png"];
+  avaterImgs = ["chatTetsuya.png", "defaultTetsuya.png"];
   return setInterval(() => {
     avaterFrame.style.backgroundImage = `url(../img/avater/${
       avaterImgs[i++ % 2]
@@ -32,7 +32,7 @@ function __chatAvater(delay = 200) {
 function defaultAvater() {
   document.getElementById(
     "avater_frame"
-  ).style.backgroundImage = `url(../img/avater/デフォルトてつや.png)`;
+  ).style.backgroundImage = `url(../img/avater/defaultTetsuya.png)`;
 }
 
 // 「はなす」をクリックしたときに日本時刻に合わせて挨拶をするための関数

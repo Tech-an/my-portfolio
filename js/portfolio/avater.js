@@ -2,9 +2,9 @@
 function laugh() {
   setInterval(() => {
     const avaterFrame = document.getElementById("avater_frame");
-    avaterFrame.style.backgroundImage = `url(../img/avater/笑顔てつや.png)`;
+    avaterFrame.style.backgroundImage = `url(../img/avater/laughTetsuya.png)`;
     setTimeout(() => {
-      avaterFrame.style.backgroundImage = `url(../img/avater/デフォルトてつや.png)`;
+      avaterFrame.style.backgroundImage = `url(../img/avater/defaultTetsuya.png)`;
     }, 10000);
   }, 60000);
 }
