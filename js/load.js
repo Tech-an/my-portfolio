@@ -18,7 +18,7 @@ const load = {
       if (titleArr.length === 0) clearInterval(id);
     }, loadTime_ms / titleArr.length);
   },
-  loadBar(loadTime_ms, divisionNum = 350) {
+  loadBar(loadTime_ms, divisionNum = 300) {
     const bar = document.getElementById("progressBar");
     const style =
       this.barStyles[Math.floor(Math.random() * this.barStyles.length)];
