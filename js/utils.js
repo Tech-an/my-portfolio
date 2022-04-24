@@ -1,8 +1,11 @@
 function backImg(imgArr) {
   /**Webページアクセス時にbodyのbackgroundImageをランダムで表示させるための関数 */
-  document.body.style.backgroundImage = `url(../img/background/${
+  document.body.style.backgroundImage = `url(https://raw.githubusercontent.com/Tech-an/my-portfolio/master/img/background/${
     imgArr[parseInt(Math.random() * (imgArr.length - 0))]
   })`;
+  // document.body.style.backgroundImage = `url(../img/background/${
+  //   imgArr[parseInt(Math.random() * (imgArr.length - 0))]
+  // })`;
 }
 
 // !【注意】modalImg は 引数modalImgはitem/サンタクロース.png のような入力値を求める

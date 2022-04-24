@@ -52,7 +52,7 @@ function openMenu(menuName, pankuzu, menu, menuItemDef) {
       modal(
         p,
         value,
-        `https://github.com/Tech-an/my-portfolio/blob/master/img/${menuName}/${img}`,
+        `https://raw.githubusercontent.com/Tech-an/my-portfolio/master/img//${menuName}/${img}`,
         text
       );
   });
